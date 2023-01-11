@@ -1,3 +1,7 @@
+// Created by: Alex James
+// Created on: January 10th, 2023
+// 
+// This block is what controls our attacks, when the A button is pressed, a projectile is fired.
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . 
@@ -16,14 +20,26 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . 
         `, spacePlane, 200, 0)
 })
+// Created by: Alex James
+// Created on: January 10th, 2023
+// 
+// This block of code is what detects when an enemy dies, more specifically when our projectile hits and enemy, it fades away and our score increases by 1
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.halo, 500)
     info.changeScoreBy(1)
 })
+// Created by: Alex James
+// Created on: January 10th, 2023
+// 
+// This block of code establishes that if an enemy runs into your hitbox, it gets destroyed and you lose 1 score point
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeLifeBy(-1)
 })
+// Created by: Alex James
+// Created on: January 10th, 2023
+// 
+// This block of code sets the background to space, spawns the character sprite, applies it's animation and allows it to be controlled by the arrow keys. It also keeps in inside the screen and gives it 5 lives
 let bogey: Sprite = null
 let projectile: Sprite = null
 let spacePlane: Sprite = null
@@ -324,6 +340,10 @@ spacePlane,
 true
 )
 info.setLife(5)
+// Created by: Alex James
+// Created on: January 10th, 2023
+// 
+// This block is all about the enemy, it sets it's sprite to my custom one, sets it's speed and where it can spawn, and gives it my custom animation.
 game.onUpdateInterval(1000, function () {
     bogey = sprites.create(img`
         . . . . . . . . . . . . . . . . 
